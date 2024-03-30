@@ -11,6 +11,47 @@ form.addEventListener("submit", handleSubmit);
 
 // const time = input.value; 
 
-const handleSubmit = delay => { 
- return new Promise((resolve, reject) => )   
+function handleSubmit(event) {
+    event.preventDefault();
+    const delay = parseInt(input.value);
+    const isSuccess = fullField.checked
+    const promise = new Promise((resolve, reject) => {
+     
+        if (isSuccess) {
+            setTimeout(() => resolve(delay), delay)
+        } else {
+            setTimeout(() => reject(delay), delay)
+        }
+    });
+    
+    promise.then(
+        (delay) => {
+            iziToast.show({
+                message: `✅ Fulfilled promise in ${delay}ms`,
+                messageColor: "#fff",
+                position: "topRight",
+                backgroundColor: "#59a10d",
+                progressBar: false,
+                close: false,
+                timeout: 5000,
+
+                 
+            });
+            
+        
+        },
+        (delay) => {
+            iziToast.show({
+                message: `❌ Rejected promise in ${delay}ms`,
+                messageColor: "#fff",
+                position: "topRight",
+                backgroundColor: "#ef4040",
+                progressBar: false,
+                close: false,
+                timeout: 5000,
+            });
+        }
+            
+    );
+    form.reset();
 }
