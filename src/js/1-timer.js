@@ -20,7 +20,7 @@ const options = {
             btnStart.setAttribute("disabled", true)
         } else {
             userSelectedDate = selectedDate;
-            btnStart.removeAttribute("diabled");
+            btnStart.removeAttribute("disabled");
         }
     // console.log(selectedDates[0]);
   },
