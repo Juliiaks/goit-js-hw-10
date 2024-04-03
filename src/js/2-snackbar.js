@@ -16,12 +16,14 @@ function handleSubmit(event) {
     const delay = parseInt(input.value);
     const isSuccess = fulfilled.checked
     const promise = new Promise((fulfilled, rejected) => {
+        setTimeout(() =>{
      
         if (isSuccess) {
-            setTimeout(() => fulfilled(delay), delay)
+            fulfilled(delay);
         } else {
-            setTimeout(() => rejected(delay), delay)
+            rejected(delay);
         }
+        }, delay);
     });
     
     promise.then(
