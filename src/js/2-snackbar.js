@@ -25,7 +25,7 @@ function handleSubmit(event) {
     });
     
     promise.then(
-        (delay) => {
+        delay => {
             iziToast.show({
                 message: `✅ Fulfilled promise in ${delay}ms`,
                 messageColor: "#fff",
@@ -37,11 +37,10 @@ function handleSubmit(event) {
 
                  
             });
-            
         
         }
     )
-      .catch( (delay) => {
+      .catch(delay => {
             iziToast.show({
                 message: `❌ Rejected promise in ${delay}ms`,
                 messageColor: "#fff",
