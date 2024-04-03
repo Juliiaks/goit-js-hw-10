@@ -31,6 +31,7 @@ flatpickr("#datetime-picker", options);
 
 const btnStart = document.querySelector("button[data-start]");
 const timePicker = document.querySelector("#datetime-picker");
+btnStart.disabled = true;
 
 btnStart.addEventListener("click", startCount);
 
@@ -40,15 +41,17 @@ function startCount() {
     const timerInterval = setInterval(() => {
         const remainingTime = userSelectedDate - new Date();
         if (remainingTime <= 0) {
+            timePicker.disabled = false;
             clearInterval(timerInterval);
             return;
         }
         const { days, hours, minutes, seconds } = convertMs(remainingTime);
-        document.querySelector('[data-days]').textContent = addLeadingZero(days);
-        document.querySelector('[data-hours]').textContent = addLeadingZero(hours);
-        document.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
-        document.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+        document.querySelector("[data-days]").textContent = addLeadingZero(days);
+        document.querySelector("[data-hours]").textContent = addLeadingZero(hours);
+        document.querySelector("[data-minutes]").textContent = addLeadingZero(minutes);
+        document.querySelector("[data-seconds]").textContent = addLeadingZero(seconds);
     }, 1000);
+
 }
     
 function addLeadingZero(value) {

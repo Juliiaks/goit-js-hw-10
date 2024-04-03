@@ -3,7 +3,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 const input = document.querySelector("input[type=number]");
-const fullField = document.querySelector("input[value=fulfilled]");
+const fulfilled = document.querySelector("input[value=fulfilled]");
 const rejected = document.querySelector("input[value=rejected]");
 const form = document.querySelector(".form");
 
@@ -14,13 +14,13 @@ form.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
     event.preventDefault();
     const delay = parseInt(input.value);
-    const isSuccess = fullField.checked
-    const promise = new Promise((resolve, reject) => {
+    const isSuccess = fulfilled.checked
+    const promise = new Promise((fulfilled, rejected) => {
      
         if (isSuccess) {
-            setTimeout(() => resolve(delay), delay)
+            setTimeout(() => fulfilled(delay), delay)
         } else {
-            setTimeout(() => reject(delay), delay)
+            setTimeout(() => rejected(delay), delay)
         }
     });
     
@@ -39,8 +39,9 @@ function handleSubmit(event) {
             });
             
         
-        },
-        (delay) => {
+        }
+    )
+      .catch( (delay) => {
             iziToast.show({
                 message: `❌ Rejected promise in ${delay}ms`,
                 messageColor: "#fff",
